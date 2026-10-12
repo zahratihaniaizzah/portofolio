@@ -1,16 +1,16 @@
-const skillModel = require('../models/skillModel');
+const skillModel = require('../models/skillModels');
 
 // Mengambil semua data skill
-const getAllskills = async (req, res) => {
+const getAllSkills = async (req, res) => {
     try {
-        const skills = await skillModel.getAllskills();
+        const skills = await skillModel.getAllSkills();
         res.status(200).json({ success: true, total: skills.length, data: skills });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 
-const getskillById = async (req, res) => {
+const getSkillById = async (req, res) => {
     try {
         const {id }= req.params;
         const skill = await skillModel.getSkillById(id);
@@ -21,7 +21,7 @@ const getskillById = async (req, res) => {
     }
 };
 
-const createskill = async (req, res) => {
+const createSkill = async (req, res) => {
     try {
         const data = req.body;
         if (!data.name) return res.status(400).json({ success: false, message: 'Nama skill wajib diisi' });
@@ -33,7 +33,7 @@ const createskill = async (req, res) => {
 };
 
 // UPDATE skill
-const updateskill = async (req, res) => {
+const updateSkill = async (req, res) => {
     try {
         const { id } = req.params;
         const data = req.body;
@@ -47,10 +47,10 @@ const updateskill = async (req, res) => {
  }
 };
 
-const deleteskill = async (req, res) => {
+const deleteSkill = async (req, res) => {
     try {
         const {id } = req.params;
-        const result = await skillModel.deleteskill(id);
+        const result = await skillModel.deleteSkill(id);
         if (result.affectedRows === 0) return res.status(404).json({ success: false, message: 'Data tidak ditemukan' });
         res.status(200).json({ success: true, message: 'Skill dihapus' });
     } catch (error) {
@@ -58,5 +58,4 @@ const deleteskill = async (req, res) => {
     }
 };
 
-    
-module.exports = { getAllskills, getskillById, createskill, updateskill, deleteskill };
+module.exports = { getAllSkills, getSkillById, createSkill, updateSkill, deleteSkill };

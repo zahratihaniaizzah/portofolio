@@ -3,12 +3,12 @@ const experienceModel = require('../models/experienceModel');
 // Mengambil semua data experience
 const getAllExperience = async (req, res) => {
     try {
-        const experiences = await experienceModel.getAllExperience();
+        const experience = await experienceModel.getAllExperience();
 
         res.status(200).json({
             success: true,
-            total: experiences.length,
-            data: experiences
+            total: experience.length,
+            data: experience
         });
     } catch (error) {
         res.status(500).json({
