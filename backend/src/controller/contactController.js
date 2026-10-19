@@ -48,4 +48,5 @@ const remove = async (req, res) => {
     }
 };
 
+
 module.exports = { getAll, getById, create, remove };
